@@ -1,8 +1,13 @@
 package pl.edu.agh.semantics;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.*;
 
 public class GraphTest {
+
+    private static final Logger log = LoggerFactory.getLogger(Graph.class);
 
     public static void main(String[] args) {
         //given
@@ -38,9 +43,9 @@ public class GraphTest {
 
         //when
         Graph graph = Graph.ofMaps(Arrays.asList(bread, baking, good, root), words);
-        System.out.println(graph.getShortestPath("bread", "root"));
-        System.out.println(graph.getShortestPath("bread", "evil"));
-        System.out.println(graph.getShortestPath("mood", "food"));
-        System.out.println(graph.getShortestPath("baking", "food"));
+        log.info(graph.getShortestPath("bread", "root").toString());
+        log.info(graph.getShortestPath("bread", "evil").toString());
+        log.info(graph.getShortestPath("mood", "food").toString());
+        log.info(graph.getShortestPath("baking", "food").toString());
     }
 }
