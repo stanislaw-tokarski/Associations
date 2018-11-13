@@ -15,6 +15,8 @@ class SpellCheckerTest {
         assertThat(SpellChecker.shouldAssociationsBeConsideredIdentical("bird", "birld")).isTrue();
         assertThat(SpellChecker.shouldAssociationsBeConsideredIdentical("beach", "beah")).isTrue();
         assertThat(SpellChecker.shouldAssociationsBeConsideredIdentical("bird", "BIRD")).isTrue();
+        assertThat(SpellChecker.shouldAssociationsBeConsideredIdentical("elephant", "elephatn")).isTrue();
+        assertThat(SpellChecker.shouldAssociationsBeConsideredIdentical("duck", "truck")).isFalse();
     }
 
     @Test

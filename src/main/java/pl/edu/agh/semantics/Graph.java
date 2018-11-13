@@ -46,7 +46,7 @@ public class Graph {
         assert occurrenceCount > 0;
         return 1.0 / (1.0 + Math.log(occurrenceCount));
     }
-
+    //Dijkstra's algorithm
     List<WeightPair<String>> getShortestPath(String source, String target) {
         for (String word : allWords) {
             distancesByName.put(word, Double.POSITIVE_INFINITY);
@@ -86,6 +86,7 @@ public class Graph {
             return true;
         }
         double myDist = distancesByName.get(from.getWord());
+        distancesByName.put(from.getWord(), Double.POSITIVE_INFINITY);
         for (WeightPair<Vertex> neighbor : from.getNeighbors()) {
             if (distancesByName.get(neighbor.getTarget().getWord()) == myDist + neighbor.getWeight()) {
                 if (retrievePath(neighbor.getTarget(), target, appendable)) {

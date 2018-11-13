@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
 class SpellChecker {
 
     private static final Logger log = LoggerFactory.getLogger(SpellChecker.class);
-    private static final Integer LEVENSHTEIN_IDENTITY_CONDITION = 1;
 
     private SpellChecker() {
     }
@@ -20,7 +19,10 @@ class SpellChecker {
     static boolean shouldAssociationsBeConsideredIdentical(String first, String second) {
         Integer levenshteinDistance = LevenshteinDistance.getDefaultInstance()
                 .apply(first.toLowerCase(), second.toLowerCase());
-        if (levenshteinDistance <= LEVENSHTEIN_IDENTITY_CONDITION) {
+        if (levenshteinDistance <= 1) {
+            log.info("Words considered identical: {} and {}", first, second);
+            return true;
+        } else if(first.length() > 5 && second.length() > 5 && levenshteinDistance <= 2){
             log.info("Words considered identical: {} and {}", first, second);
             return true;
         }
